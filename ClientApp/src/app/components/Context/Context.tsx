@@ -1,9 +1,9 @@
 import React, { ReactNode, createContext, useState } from 'react';
-type Payload = {
+export type Payload = {
   data?: UserPayload;
   updateData?: (newData: UserPayload) => void;
 };
-type UserPayload = {
+export type UserPayload = {
   role?: string;
   isSignedIn?: boolean;
 };

@@ -37,6 +37,7 @@ export const SideNav = ({ collapsed, setCollapse }: Props) => {
       trigger={null}
       collapsible
       collapsed={collapsed}
+      collapsedWidth={25}
       style={{
         overflow: 'auto',
         height: '100vh',

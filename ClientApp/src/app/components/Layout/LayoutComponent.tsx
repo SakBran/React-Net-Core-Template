@@ -1,4 +1,4 @@
-import { Button, Collapse, Layout, theme } from 'antd';
+import { Button, Layout, theme } from 'antd';
 import React, { useState } from 'react';
 import { BreadcrumbLink } from '../Breadcrump/BreadcrumbLink';
 import { SideNav } from '../SideNav/SideNav';
@@ -9,8 +9,10 @@ import {
   LogoutOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
+  UserOutlined,
 } from '@ant-design/icons';
-
+import './LayoutComponent.Module.css';
+import { LoginButton } from '../LoginButton/LoginButton';
 const LayoutComponent: React.FC = () => {
   const { Content } = Layout;
   const {
@@ -18,6 +20,7 @@ const LayoutComponent: React.FC = () => {
   } = theme.useToken();
 
   const [collapsed, setCollapsed] = useState(false);
+
   const handleCollapsed = () => {
     if (collapsed) {
       setCollapsed(false);
@@ -25,26 +28,18 @@ const LayoutComponent: React.FC = () => {
       setCollapsed(true);
     }
   };
+
   return (
     <Layout style={{ minHeight: '100vh' }}>
+      <div className="loginContainer">
+        <LoginButton></LoginButton>
+      </div>
       <SideNav collapsed={collapsed} setCollapse={handleCollapsed} />
       <Layout
         className="site-layout"
-        style={collapsed ? { marginLeft: 80 } : { marginLeft: 200 }}
+        style={collapsed ? { marginLeft: 25 } : { marginLeft: 200 }}
       >
-        <Header
-          style={{
-            position: 'sticky',
-            top: 0,
-            zIndex: 1,
-            width: '100%',
-            height: '25px',
-            display: 'flex',
-            alignItems: 'center',
-            backgroundColor: 'transparent',
-            padding: 0,
-          }}
-        >
+        <Header className="topNav">
           <Button size="small" onClick={handleCollapsed}>
             {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
           </Button>
@@ -74,10 +69,13 @@ const LayoutComponent: React.FC = () => {
             padding: '4px',
             width: '100%',
             textAlign: 'center',
-            backgroundColor: '#ddd',
+            backgroundColor: 'white',
           }}
         >
-          Ant Design ©2023 Created by Sak Bran Aung
+          Ant Design ©2023 Created by{' '}
+          <a href="https://sakbran.github.io/" target="blank">
+            Sak Bran Aung
+          </a>
         </Footer>
       </Layout>
     </Layout>

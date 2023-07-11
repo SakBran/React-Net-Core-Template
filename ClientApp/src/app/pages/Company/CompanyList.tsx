@@ -25,11 +25,11 @@ const CompanyList: React.FC = () => {
       { id: 3, name: 'Bob Johnson', age: 35 },
       { id: 4, name: 'John Doe', age: 25 },
       { id: 5, name: 'Jane Smith', age: 30 },
-      //{ id: 6, name: 'John Doe', age: 25, description: 'Married' },
-      //{ id: 7, name: 'Jane Smith', age: 30 },
-      //{ id: 8, name: 'Bob Johnson', age: 35 },
-      //{ id: 9, name: 'John Doe', age: 25 },
-      //{ id: 10, name: 'Jane Smith', age: 30 },
+      { id: 6, name: 'John Doe', age: 25, description: 'Married' },
+      { id: 7, name: 'Jane Smith', age: 30 },
+      { id: 8, name: 'Bob Johnson', age: 35 },
+      { id: 9, name: 'John Doe', age: 25 },
+      { id: 10, name: 'Jane Smith', age: 30 },
     ];
   };
   return (
