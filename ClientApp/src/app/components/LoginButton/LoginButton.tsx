@@ -1,8 +1,10 @@
 import { LoginOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { useCustomContext } from '../Context/Context';
-
-export const LoginButton = () => {
+type Pros = {
+  collapsed: boolean;
+};
+export const LoginButton = ({ collapsed }: Pros) => {
   const { data, updateData } = useCustomContext();
   const handleLogin = () => {
     if (data?.isSignedIn) {
@@ -23,7 +25,7 @@ export const LoginButton = () => {
         <Button size="small" onClick={handleLogin}>
           <>
             <UserOutlined />
-            <span>Sak Bran Aung</span>
+            {collapsed ? <span>Sak Bran Aung</span> : ''}
           </>
         </Button>
       ) : (
@@ -34,7 +36,7 @@ export const LoginButton = () => {
         {data?.isSignedIn ? (
           <>
             <LogoutOutlined />
-            <span>Logout</span>
+            {collapsed ? <span>Logout</span> : ''}
           </>
         ) : (
           <>

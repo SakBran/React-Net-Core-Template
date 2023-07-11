@@ -10,7 +10,6 @@ export const RouteComponent = () => {
   const Company = 'Company';
   const { data } = useCustomContext();
 
-  console.log(data);
   return (
     <Routes>
       <Route path="/" element={<NxWelcome title={'Hey'} />} />

@@ -26,3 +26,18 @@
     background-color: white;
     padding: 0px;
 }
+
+@media screen {
+    .loginContainer {
+        position: absolute;
+        top: 1px;
+        right: 0px;
+        z-Index: 1;
+    }
+
+    .loginContainer button {
+        margin-left: 1px;
+        text-align: center;
+    }
+
+}

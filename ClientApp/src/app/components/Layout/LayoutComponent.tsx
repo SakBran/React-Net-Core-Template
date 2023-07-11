@@ -1,16 +1,10 @@
 import { Button, Layout, theme } from 'antd';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { BreadcrumbLink } from '../Breadcrump/BreadcrumbLink';
 import { SideNav } from '../SideNav/SideNav';
 import { RouteComponent } from 'src/app/Routes/Route';
 import { Footer, Header } from 'antd/es/layout/layout';
-import {
-  LoginOutlined,
-  LogoutOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
+import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import './LayoutComponent.Module.css';
 import { LoginButton } from '../LoginButton/LoginButton';
 const LayoutComponent: React.FC = () => {
@@ -32,7 +26,7 @@ const LayoutComponent: React.FC = () => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <div className="loginContainer">
-        <LoginButton></LoginButton>
+        <LoginButton collapsed={collapsed}></LoginButton>
       </div>
       <SideNav collapsed={collapsed} setCollapse={handleCollapsed} />
       <Layout

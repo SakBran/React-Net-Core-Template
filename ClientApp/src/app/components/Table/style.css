@@ -18,10 +18,9 @@ th {
     width: 100%;
     margin-top: 16px;
 }
-
+/* 
 .pagination button {
     color: black;
-    /* float: left; */
     padding: 8px 16px;
     margin-left: 4px;
     text-decoration: none;
@@ -32,7 +31,6 @@ th {
 
 .pagination select {
     color: black;
-    /* float: left; */
     margin-right: 16px;
     padding: 8px 16px;
     text-decoration: none;
@@ -49,7 +47,7 @@ th {
 
 .pagination a:hover:not(.active) {
     background-color: #ddd;
-}
+} */
 
 .form-container {
     display: flex;
