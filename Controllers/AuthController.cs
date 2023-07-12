@@ -1,11 +1,4 @@
-﻿using API.DBContext;
-using API.Interface;
-using API.Model;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Text;
-using System.Text.Json;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
