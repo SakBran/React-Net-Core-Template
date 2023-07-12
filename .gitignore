@@ -1,5 +1,4 @@
 /.vs
 /.vscode
 /bin
-obj/Debug/net6.0/API.csproj.FileListAbsolute.txt
-obj/Debug/net6.0/API.GeneratedMSBuildEditorConfig.editorconfig
+/obj/*
