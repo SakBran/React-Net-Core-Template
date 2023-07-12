@@ -92,7 +92,7 @@ namespace API.Model
             }
             var type = source.GetType();
             var hasAsync = type.GetMethod("CountAsync") != null;
-            var count = 0;
+            int count;
             if (hasAsync)
             {
                 count = await source.CountAsync();
