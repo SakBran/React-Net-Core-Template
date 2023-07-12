@@ -28,10 +28,10 @@ namespace API.Controllers
         public async Task<ActionResult<ApiResult<T>>> Get(
                   int pageIndex = 0,
                   int pageSize = 10,
-                  string sortColumn = null,
-                  string sortOrder = null,
-                  string filterColumn = null,
-                  string filterQuery = null)
+                  string? sortColumn = null,
+                  string? sortOrder = null,
+                  string? filterColumn = null,
+                  string? filterQuery = null)
         {
 
             var query = _query;
@@ -67,8 +67,11 @@ namespace API.Controllers
         {
 
             var oldData = await _context.FindAsync<T>(id);
-            var newData = obj;
-            _context.Entry(oldData).State = EntityState.Detached;
+            if (oldData != null)
+            {
+                _context.Entry(oldData).State = EntityState.Detached;
+            }
+
             _context.Entry(obj).State = EntityState.Modified;
 
             try

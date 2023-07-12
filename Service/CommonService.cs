@@ -24,15 +24,22 @@ namespace API.Service
         public int Update(string id, T obj)
         {
             var oldData = _context.Find<T>(id);
-            var newData = obj;
-            _context.Entry(oldData).State = EntityState.Detached;
+            if (oldData != null)
+            {
+                _context.Entry(oldData).State = EntityState.Detached;
+            }
             _context.Entry(obj).State = EntityState.Modified;
             return _context.SaveChanges();
         }
 
         public int Delete(string id)
         {
-            _context.Set<T>().Remove(_context.Set<T>().Find(id));
+            var temp = _context.Set<T>().Find(id);
+            if (temp != null)
+            {
+                _context.Set<T>().Remove(temp);
+            }
+
             return _context.SaveChanges();
         }
     }
