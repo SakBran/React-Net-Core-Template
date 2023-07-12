@@ -3,7 +3,6 @@ using API.Interface;
 using API.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -61,7 +60,8 @@ internal class Program
             app.UseDeveloperExceptionPage();
             app.UseSwaggerUI();
         }
-        else {
+        else
+        {
             app.UseDeveloperExceptionPage();
             app.UseHsts();
         }
