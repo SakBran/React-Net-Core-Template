@@ -1,4 +1,6 @@
-﻿namespace API.Interface
+﻿using System.Linq;
+
+namespace API.Interface
 {
     public interface ICommonService<T>
     {

@@ -2,9 +2,12 @@ using API.DBContext;
 using API.Interface;
 using API.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -13,22 +16,11 @@ internal class Program
     private static void Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
-
-        // Add services to the container.
-
         builder.Services.AddControllers();
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
-
-        builder.Services.AddSpaStaticFiles(configuration =>
-        {
-            configuration.RootPath = "ClientApp/dist";
-        });
-
         builder.Services.AddDbContextPool<ApplicationDbContext>(options =>
         options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-
         builder.Services.AddAuthentication(x =>
         {
             x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -101,30 +93,7 @@ internal class Program
                       }
                   );
         #endregion
-        app.UseStaticFiles(new StaticFileOptions()
-        {
-            OnPrepareResponse = (context) =>
-            {
-                switch (context.File.Name)
-                {
-                    // disable caching for these specific files
-                    case "isOnline.txt":
-                        context.Context.Response.Headers.Add("Cache-Control", "no-cache, no-store");
-                        context.Context.Response.Headers.Add("Expires", "-1");
-                        break;
-                    // use default rules (from appsettings.json) for all other files
-                    default:
-                        context.Context.Response.Headers["Cache-Control"] =
-                            builder.Configuration["StaticFiles:Headers:Cache-Control"];
-                        break;
-                }
-            }
-        });
 
-        if (!builder.Environment.IsDevelopment())
-        {
-            app.UseSpaStaticFiles();
-        }
         app.UseHttpsRedirection();
         app.UseRouting();
         app.UseForwardedHeaders(new ForwardedHeadersOptions
@@ -139,36 +108,7 @@ internal class Program
             endpoints.MapControllerRoute(
                 name: "default",
                 pattern: "{controller}/{action=Index}/{id?}");
-
-
         });
-        app.UseSpa(spa =>
-        {
-            // To learn more about options for serving an Angular SPA from ASP.NET Core,
-            // see https://go.microsoft.com/fwlink/?linkid=864501
-
-            spa.Options.SourcePath = "ClientApp";
-
-            if (builder.Environment.IsDevelopment())
-            {
-                spa.UseReactDevelopmentServer("start");
-            }
-            spa.ApplicationBuilder.UseCors(builder =>
-            {
-                // Must specify Methods
-                builder.WithMethods("GET");
-                builder.WithMethods("PUT");
-                builder.WithMethods("POST");
-                builder.WithMethods("DELETE");
-                builder.WithMethods("*");
-                builder.WithHeaders("Authorization");
-                builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
-                builder.WithOrigins("*", "http://localhost:8101/").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
-
-            });
-
-        });
-
         app.MapControllers();
         app.Run();
     }

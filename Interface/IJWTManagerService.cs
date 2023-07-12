@@ -1,4 +1,5 @@
-﻿using API.Model;
+﻿using System;
+using API.Model;
 
 namespace API.Interface
 {
@@ -7,7 +8,7 @@ namespace API.Interface
         TokenModel? Authenticate(User users);
         //TokenModel AuthenticateInspector(User users);
         TokenModel? RefreshToken(string RefreshToken);
-        TokenModel? AuthenticateTradenet2(String users);
+        TokenModel? AuthenticateTradenet2(string users);
 
     }
 }
