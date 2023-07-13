@@ -20,7 +20,6 @@ const UserList: React.FC = () => {
         return responseData;
       })
       .catch((error) => {
-        console.log(error);
         throw error;
       });
   };
