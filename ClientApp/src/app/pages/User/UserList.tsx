@@ -1,4 +1,3 @@
-import { Spin } from 'antd';
 import React, { useMemo, useState } from 'react';
 import { PaginationType } from 'src/Models/PaginationType';
 import { BasicTable } from 'src/app/components/Table/BasicTable';

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './style.css';
 import NameConvert from 'src/app/services/NameConvert';
 import TableAction from '../TableAction/TableAction';
-import { Pagination, Spin } from 'antd';
+import { Pagination } from 'antd';
 import { PaginationType } from 'src/Models/PaginationType';
 //ဒီနေရမှာ Ant Designက Table သုံးလဲရတယ် Depedencyနဲနိုင်သမျှနဲအောင် လုပ်သာအကောင်းဆုံးပဲ
 //Fetch လုပ်တာလဲ ပြချင်တဲ့ Column ကို Display Dataထဲထည့်ပေးရုံပဲ
