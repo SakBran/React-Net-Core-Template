@@ -1,5 +1,7 @@
+import { AnyObject } from 'antd/es/table/Table';
+
 export interface PaginationType {
-  data: any[];
+  data: AnyObject[];
   pageIndex: number;
   pageSize: number;
   totalCount: number;
