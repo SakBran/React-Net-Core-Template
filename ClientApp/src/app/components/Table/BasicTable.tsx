@@ -119,6 +119,7 @@ export const BasicTable: React.FC<PropsType> = ({
         <table>
           <thead>
             <tr>
+              <td>No</td>
               {displayData.map((display: string, i) => {
                 if (display !== 'id') {
                   return (
@@ -150,6 +151,9 @@ export const BasicTable: React.FC<PropsType> = ({
 
               const template = (
                 <tr key={row['id']}>
+                  <td key={row['id'] + 'No'}>
+                    {index + 1 + pageIndex * pageSize}
+                  </td>
                   {data}
                   {action}
                 </tr>
