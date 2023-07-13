@@ -68,7 +68,7 @@ internal class Program
                           builder.WithMethods("POST");
                           builder.WithMethods("DELETE");
                           builder.WithMethods("*");
-                          builder.WithHeaders("AuthoriZatioN");
+                          builder.WithHeaders("Authorization");
                           builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
                           //Code capacitor://localhost for ios device 
                           //http://localhost for android device
@@ -88,7 +88,9 @@ internal class Program
                           "https://localhost/",
                           "http://localhost:*",
                           "http://localhost:8100",
-                          "http://localhost:8100/").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
+                          "http://localhost:8100/",
+                          "http://localhost:3000",
+                          "http://localhost:3000/").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
 
                       }
                   );

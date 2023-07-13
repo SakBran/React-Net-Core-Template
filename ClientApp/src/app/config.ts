@@ -1,4 +1,4 @@
 const envConfig = {
-  baseUrl: 'https://testingvehicle.myanmartradenet.com/api/',
+  baseUrl: 'https://localhost:8000/api/',
 };
 export default envConfig;

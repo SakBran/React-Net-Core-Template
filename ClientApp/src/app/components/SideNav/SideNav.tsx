@@ -31,6 +31,23 @@ export const SideNav = ({ collapsed, setCollapse }: Props) => {
         },
       ],
     },
+    {
+      label: 'User',
+      key: 'SubMenu-User',
+      icon: <TeamOutlined />,
+      children: [
+        {
+          label: <Link to="/User/List">List</Link>,
+          key: 'SubMenu-Company-List',
+          icon: <UnorderedListOutlined />,
+        },
+        {
+          label: <Link to="/User/New">New</Link>,
+          key: 'SubMenu-Company-New',
+          icon: <PlusCircleOutlined />,
+        },
+      ],
+    },
   ];
   return (
     <Sider

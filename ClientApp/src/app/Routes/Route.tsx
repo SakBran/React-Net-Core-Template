@@ -5,9 +5,11 @@ import CompanyCreate from '../pages/Company/CompanyCreate';
 import Protected from '../components/PrivateRoute/PrivateRoute';
 import { useCustomContext } from '../components/Context/Context';
 import NoPermission from '../components/NoPermission/NoPermission';
+import UserList from '../pages/User/UserList';
 
 export const RouteComponent = () => {
   const Company = 'Company';
+  const User = 'User';
   const { data } = useCustomContext();
 
   return (
@@ -25,7 +27,9 @@ export const RouteComponent = () => {
       />
       <Route path={'/' + Company + '/Edit/:id'} element={<CompanyList />} />
       <Route path={'/' + Company + '/Delete/:id'} element={<CompanyList />} />
-      <Route path={'/' + Company + '/Detail/:id'} element={<CompanyList />} />S
+      <Route path={'/' + Company + '/Detail/:id'} element={<CompanyList />} />
+
+      <Route path={'/' + User + '/List'} element={<UserList />} />
     </Routes>
   );
 };

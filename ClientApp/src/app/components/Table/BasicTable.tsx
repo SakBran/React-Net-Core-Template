@@ -3,12 +3,13 @@ import './style.css';
 import NameConvert from 'src/app/services/NameConvert';
 import TableAction from '../TableAction/TableAction';
 import { Pagination } from 'antd';
+import { PaginationType } from 'src/Models/PaginationType';
 //ဒီနေရမှာ Ant Designက Table သုံးလဲရတယ် Depedencyနဲနိုင်သမျှနဲအောင် လုပ်သာအကောင်းဆုံးပဲ
 //Fetch လုပ်တာလဲ ပြချင်တဲ့ Column ကို Display Dataထဲထည့်ပေးရုံပဲ
 //Fetch ကထွက်လာတဲ့ Databindingကလဲ အဆင်ပြေအောင် Componentအပြင်ပဲထုတ်ထားတယ်
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type TableFunctionType = (api: string) => Promise<object[]>;
+type TableFunctionType = (api: string) => Promise<PaginationType>;
 interface PropsType {
   displayData: string[];
   api: string;
@@ -21,19 +22,31 @@ export const BasicTable: React.FC<PropsType> = ({
   fetch,
 }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const intialValue: any[] = [];
+  const intialValue: PaginationType = {
+    data: [],
+    pageIndex: 0,
+    pageSize: 0,
+    totalCount: 0,
+    totalPages: 0,
+    hasPreviousPage: false,
+    hasNextPage: false,
+    sortColumn: '',
+    sortOrder: '',
+    filterColumn: '',
+    filterQuery: '',
+  };
   const [sortColumn, setSortColumn] = useState(displayData[0]);
   const [sortDirection, setSortDirection] = useState('asc');
 
-  const [filterColumn, setFilterColumn] = useState('');
+  const [filterColumn, setFilterColumn] = useState(displayData[0]);
   const [filterQuery, setFilterQuery] = useState('');
 
   const [searchColumn, setSearchColumn] = useState('');
   const [searchValue, setSearchValue] = useState('');
 
-  const [pageIndex, setPageIndex] = useState('0');
-  const [pageSize, setPageSize] = useState('5');
-  const [data, setData] = useState(intialValue);
+  const [pageIndex, setPageIndex] = useState(0);
+  const [pageSize, setPageSize] = useState(10);
+  const [data, setData] = useState<PaginationType>(intialValue);
 
   const [url, setUrl] = useState('');
   const handleSort = (column: string) => {
@@ -44,18 +57,14 @@ export const BasicTable: React.FC<PropsType> = ({
   //ဒီထဲကParameterက Dotnet Core ထဲကPagination Getနဲ့ညှိပေးထားတာ
   //တကယ်လို့ပြင်ချင်ရင် Parameter တွေပြင်သုံးပေါ့
   useEffect(() => {
-    let temp = `${api}?
-    pageIndex=${pageIndex}
-    &pageSize=${pageSize}&
-    sortColumn=${sortColumn}&
-    sortOrder=${sortDirection}`;
-    if (filterQuery !== '' && filterColumn !== '') {
-      temp =
-        temp +
-        `filterColumn=${filterColumn}&
-        filterQuery=${filterQuery}`;
+    let temp = `${api}?pageIndex=${pageIndex}&pageSize=${pageSize}`;
+
+    if (sortColumn !== '') {
+      temp = temp + `&sortColumn=${sortColumn}&sortOrder=${sortDirection}`;
     }
-    console.log(temp);
+    if (filterQuery !== '' && filterColumn !== '') {
+      temp = temp + `&filterColumn=${filterColumn}&filterQuery=${filterQuery}`;
+    }
     setUrl(temp);
   }, [
     sortColumn,
@@ -70,7 +79,6 @@ export const BasicTable: React.FC<PropsType> = ({
   ]);
 
   useEffect(() => {
-    console.log('Call API');
     const call = async () => {
       setData(await fetch(url));
     };
@@ -81,6 +89,9 @@ export const BasicTable: React.FC<PropsType> = ({
     <>
       <div className="form-container">
         <select onChange={(e) => setSearchColumn(e.target.value)}>
+          <option key="searchKey" value="">
+            Select One
+          </option>
           {displayData.map((display: string) => {
             return (
               <option key={display} value={display}>
@@ -126,7 +137,7 @@ export const BasicTable: React.FC<PropsType> = ({
             </tr>
           </thead>
           <tbody>
-            {data.map((row, index) => {
+            {data.data.map((row, index) => {
               const data = displayData.map((display: string, i) => {
                 if (display !== 'id') {
                   return <td key={i}>{row[display]}</td>;
@@ -149,30 +160,14 @@ export const BasicTable: React.FC<PropsType> = ({
         </table>
       </div>
       <div className="pagination">
-        {/* <select onChange={(e) => setPageSize(e.target.value)}>
-          <option value="5">5 / Page</option>
-          <option value="10">10 / Page</option>
-          <option value="100">100 / Page</option>
-          <option value="1000">1000 / Page</option>
-        </select> */}
-
-        {/* <button>&laquo;</button>
-        <button onClick={(e) => setPageIndex((+pageIndex + 1).toString())}>
-          Prev
-        </button>
-        <button onClick={(e) => setPageIndex((+pageIndex + 1).toString())}>
-          Next
-        </button>
-        <button>&raquo;</button> */}
-
         <Pagination
           showSizeChanger
-          onShowSizeChange={(current) => setPageSize(current.toString())}
+          onShowSizeChange={(current) => setPageSize(current)}
           defaultCurrent={+pageIndex}
-          total={50}
+          total={data.totalCount}
           onChange={(page, pageSize) => {
-            setPageIndex(page.toString());
-            setPageSize(pageSize.toString());
+            setPageIndex(page - 1);
+            setPageSize(pageSize);
           }}
         />
       </div>
