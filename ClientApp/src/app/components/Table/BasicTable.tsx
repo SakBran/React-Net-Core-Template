@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './style.css';
 import NameConvert from 'src/app/services/NameConvert';
 import TableAction from '../TableAction/TableAction';
-import { Pagination } from 'antd';
+import { Pagination, Spin } from 'antd';
 import { PaginationType } from 'src/Models/PaginationType';
 //ဒီနေရမှာ Ant Designက Table သုံးလဲရတယ် Depedencyနဲနိုင်သမျှနဲအောင် လုပ်သာအကောင်းဆုံးပဲ
 //Fetch လုပ်တာလဲ ပြချင်တဲ့ Column ကို Display Dataထဲထည့်ပေးရုံပဲ
@@ -14,12 +14,14 @@ interface PropsType {
   displayData: string[];
   api: string;
   fetch: TableFunctionType;
+  loading: boolean;
 }
 
 export const BasicTable: React.FC<PropsType> = ({
   displayData,
   api,
   fetch,
+  loading,
 }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const intialValue: PaginationType = {
@@ -115,7 +117,7 @@ export const BasicTable: React.FC<PropsType> = ({
           Search
         </button>
       </div>
-      <div className="table-container">
+      <div className={loading ? 'table-container-loading' : 'table-container'}>
         <table>
           <thead>
             <tr>
