@@ -11,7 +11,6 @@ namespace API.Model
             this.Name = "";
             this.Password = "";
             this.Permission = "";
-            this.Sakhan = "";
 
         }
         [Key]
@@ -22,7 +21,5 @@ namespace API.Model
         public string Password { get; set; }
         [Required]
         public string Permission { get; set; }
-        [Required]
-        public string Sakhan { get; set; }
     }
 }

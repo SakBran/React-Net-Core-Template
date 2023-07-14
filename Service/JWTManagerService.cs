@@ -57,7 +57,6 @@ namespace API.Service
                 RefreshToken = encryptedRefreshToken,
                 UserId = userId,
                 Permission = tempUser?.Permission ?? "",
-                Sakhan = tempUser?.Sakhan ?? "",
             };
             _tokenService.Create(tokenObj);
             return tokenObj;

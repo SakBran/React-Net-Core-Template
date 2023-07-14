@@ -1,14 +1,15 @@
 import { Form, Input, Button } from 'antd';
 import Password from 'antd/es/input/Password';
-import { useCallback } from 'react';
-import { useFormload } from 'src/app/Hooks/useFormload';
+import useFormActions from 'src/app/Hooks/useFormActions';
+import useFormLoad from 'src/app/Hooks/useFormLoad';
+import useFormhelper from 'src/app/Hooks/useFormhelper';
+const APIURL = 'User';
 
 const UserPage = () => {
-  const { readOnly, id, action, formRef } = useFormload('User');
-  const onFinish = useCallback((values: unknown) => {
-    console.log('Form values:', values);
-    alert(JSON.stringify(values));
-  }, []);
+  const { readOnly, id, action } = useFormhelper();
+  const { formRef } = useFormLoad(id, action, APIURL);
+  const { onFinish } = useFormActions(id, action, APIURL);
+
   return (
     <Form
       ref={formRef}
@@ -44,7 +45,7 @@ const UserPage = () => {
 
       <Form.Item wrapperCol={{ offset: 10, span: 20 }}>
         <Button type="primary" htmlType="submit">
-          Submit
+          {action}
         </Button>
       </Form.Item>
     </Form>

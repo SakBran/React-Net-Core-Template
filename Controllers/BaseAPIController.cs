@@ -66,7 +66,6 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutData(string id, T obj)
         {
-
             var oldData = await _context.FindAsync<T>(id);
             if (oldData != null)
             {
@@ -81,10 +80,10 @@ namespace API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-
+                return StatusCode(StatusCodes.Status500InternalServerError, "Concurrency error occurred.");
             }
 
-            return NoContent();
+            return Ok(obj);
         }
 
 
