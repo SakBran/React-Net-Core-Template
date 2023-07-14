@@ -1,4 +1,4 @@
-import { AnyObject } from 'antd/es/table/Table';
+import { AnyObject } from './AnyObject';
 
 export interface PaginationType {
   data: AnyObject[];
