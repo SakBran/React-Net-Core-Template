@@ -6,6 +6,7 @@ import Protected from '../components/PrivateRoute/PrivateRoute';
 import { useCustomContext } from '../components/Context/Context';
 import NoPermission from '../components/NoPermission/NoPermission';
 import UserList from '../pages/User/UserList';
+import UserPage from '../pages/User/UserPage';
 
 export const RouteComponent = () => {
   const Company = 'Company';
@@ -30,6 +31,10 @@ export const RouteComponent = () => {
       <Route path={'/' + Company + '/Detail/:id'} element={<CompanyList />} />
 
       <Route path={'/' + User + '/List'} element={<UserList />} />
+      <Route path={'/' + User + '/New'} element={<UserPage />} />
+      <Route path={'/' + User + '/Edit/:id'} element={<UserPage />} />
+      <Route path={'/' + User + '/Delete/:id'} element={<UserPage />} />
+      <Route path={'/' + User + '/Detail/:id'} element={<UserPage />} />
     </Routes>
   );
 };

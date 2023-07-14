@@ -2,10 +2,8 @@ import {
   TeamOutlined,
   UnorderedListOutlined,
   PlusCircleOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
 } from '@ant-design/icons';
-import { Button, Menu, MenuProps } from 'antd';
+import { Menu, MenuProps } from 'antd';
 import Sider from 'antd/es/layout/Sider';
 import { Link } from 'react-router-dom';
 type Props = {
@@ -38,12 +36,12 @@ export const SideNav = ({ collapsed, setCollapse }: Props) => {
       children: [
         {
           label: <Link to="/User/List">List</Link>,
-          key: 'SubMenu-Company-List',
+          key: 'SubMenu-User-List',
           icon: <UnorderedListOutlined />,
         },
         {
           label: <Link to="/User/New">New</Link>,
-          key: 'SubMenu-Company-New',
+          key: 'SubMenu-User-New',
           icon: <PlusCircleOutlined />,
         },
       ],

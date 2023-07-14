@@ -1,12 +1,9 @@
-import React from 'react';
 import { Form, Input, Button } from 'antd';
-
+const onFinish = (values: unknown) => {
+  console.log('Form values:', values);
+  // You can perform further actions with the form values, such as submitting to an API or storing in state
+};
 const CompanyCreate = () => {
-  const onFinish = (values: unknown) => {
-    console.log('Form values:', values);
-    // You can perform further actions with the form values, such as submitting to an API or storing in state
-  };
-
   return (
     <Form
       labelCol={{ span: 10 }}
