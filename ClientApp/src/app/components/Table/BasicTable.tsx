@@ -9,19 +9,17 @@ import { PaginationType } from 'src/Models/PaginationType';
 //Fetch ကထွက်လာတဲ့ Databindingကလဲ အဆင်ပြေအောင် Componentအပြင်ပဲထုတ်ထားတယ်
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type TableFunctionType = (api: string) => Promise<PaginationType>;
+export type TableFunctionType = (api: string) => Promise<PaginationType>;
 interface PropsType {
   displayData: string[];
   api: string;
-  fetch: TableFunctionType;
-  loading: boolean;
+  fetch: (url: string) => Promise<PaginationType>;
 }
 
 export const BasicTable: React.FC<PropsType> = ({
   displayData,
   api,
   fetch,
-  loading,
 }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const intialValue: PaginationType = {
@@ -37,6 +35,7 @@ export const BasicTable: React.FC<PropsType> = ({
     filterColumn: '',
     filterQuery: '',
   };
+  const [loading, setloading] = useState<boolean>(false);
   const [sortColumn, setSortColumn] = useState(displayData[0]);
   const [sortDirection, setSortDirection] = useState('asc');
 
@@ -81,10 +80,13 @@ export const BasicTable: React.FC<PropsType> = ({
   ]);
 
   useEffect(() => {
+    setloading(true);
     const call = async () => {
       setData(await fetch(url));
     };
-    call();
+    call()
+      .then(() => setloading(false))
+      .catch(() => setloading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url, filterColumn, filterQuery]);
   return (
