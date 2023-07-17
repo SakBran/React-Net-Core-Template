@@ -7,13 +7,17 @@ const useFormLoad = (id: string, action: string, url: string) => {
   const formRef = React.useRef<FormInstance>(null);
   const onLoad = useCallback(() => {
     if (action !== 'New') {
-      GetSingle(url + '/' + id).then((x) => {
-        formRef.current?.setFieldsValue(x);
-        setLoading(false);
-      });
+      if (id) {
+        GetSingle(url + '/' + id).then((x) => {
+          formRef.current?.setFieldsValue(x);
+          setLoading(false);
+        });
+      }
+    } else {
+      setLoading(false);
     }
   }, [action, id, url]);
   useEffect(() => onLoad(), [onLoad]);
-  return { formRef, loading };
+  return { formRef, loading, setLoading };
 };
 export default useFormLoad;

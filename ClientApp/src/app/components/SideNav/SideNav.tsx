@@ -6,11 +6,13 @@ import {
 import { Menu, MenuProps } from 'antd';
 import Sider from 'antd/es/layout/Sider';
 import { Link } from 'react-router-dom';
+import useActivateLink from 'src/app/Hooks/useActivatedLink';
 type Props = {
   collapsed: boolean;
   setCollapse: () => void;
 };
 export const SideNav = ({ collapsed, setCollapse }: Props) => {
+  const { link } = useActivateLink();
   const items: MenuProps['items'] = [
     {
       label: 'User',
@@ -19,12 +21,12 @@ export const SideNav = ({ collapsed, setCollapse }: Props) => {
       children: [
         {
           label: <Link to="/User/List">List</Link>,
-          key: 'SubMenu-User-List',
+          key: '/User/List',
           icon: <UnorderedListOutlined />,
         },
         {
           label: <Link to="/User/New">New</Link>,
-          key: 'SubMenu-User-New',
+          key: '/User/New',
           icon: <PlusCircleOutlined />,
         },
       ],
@@ -52,6 +54,7 @@ export const SideNav = ({ collapsed, setCollapse }: Props) => {
         theme="dark"
         defaultSelectedKeys={['1']}
         defaultOpenKeys={['sub1']}
+        selectedKeys={[link.toString()]}
         items={items}
       ></Menu>
     </Sider>
