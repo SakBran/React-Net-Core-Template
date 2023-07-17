@@ -6,24 +6,27 @@ type Props = {
   action: string;
 };
 export const AjaxButton = ({ writeLoading, action }: Props) => {
+  const BtnTemplate = () =>
+    action === 'Detail' ? (
+      ''
+    ) : (
+      <>
+        <Button type="primary" htmlType="submit">
+          {writeLoading ? (
+            <Spin
+              tip="Loading..."
+              spinning={writeLoading}
+              indicator={<LoadingOutlined style={{ color: 'white' }} spin />}
+            ></Spin>
+          ) : (
+            action
+          )}
+        </Button>{' '}
+      </>
+    );
   return (
     <>
-      {action !== 'Detail' ?? (
-        <>
-          <Button type="primary" htmlType="submit">
-            {writeLoading ? (
-              <Spin
-                tip="Loading..."
-                spinning={writeLoading}
-                indicator={<LoadingOutlined style={{ color: 'white' }} spin />}
-              ></Spin>
-            ) : (
-              action
-            )}
-          </Button>{' '}
-        </>
-      )}
-
+      <BtnTemplate />
       <Button onClick={() => window.history.back()}>Back</Button>
     </>
   );
