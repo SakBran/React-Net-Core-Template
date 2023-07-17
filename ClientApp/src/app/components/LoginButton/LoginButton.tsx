@@ -1,5 +1,5 @@
 import { LoginOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 import { useCustomContext } from '../Context/Context';
 type Pros = {
   collapsed: boolean;
