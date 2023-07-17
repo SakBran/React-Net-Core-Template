@@ -71,7 +71,7 @@ const LayoutComponent: React.FC = () => {
             padding: '4px',
             width: '100%',
             textAlign: 'center',
-            backgroundColor: 'white',
+            backgroundColor: '#d0d0d0',
           }}
         >
           Ant Design ©2023 Created by{' '}
