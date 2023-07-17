@@ -7,16 +7,19 @@ type Props = {
 };
 export const AjaxButton = ({ writeLoading, action }: Props) => {
   return (
-    <Button type="primary" htmlType="submit">
-      {writeLoading ? (
-        <Spin
-          tip="Loading..."
-          spinning={writeLoading}
-          indicator={<LoadingOutlined style={{ color: 'white' }} spin />}
-        ></Spin>
-      ) : (
-        action
-      )}
-    </Button>
+    <>
+      <Button type="primary" htmlType="submit">
+        {writeLoading ? (
+          <Spin
+            tip="Loading..."
+            spinning={writeLoading}
+            indicator={<LoadingOutlined style={{ color: 'white' }} spin />}
+          ></Spin>
+        ) : (
+          action
+        )}
+      </Button>{' '}
+      <Button onClick={() => window.history.back()}>Back</Button>
+    </>
   );
 };
