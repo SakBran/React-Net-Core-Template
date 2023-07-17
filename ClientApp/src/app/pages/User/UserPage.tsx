@@ -1,5 +1,6 @@
-import { Form, Input, Button } from 'antd';
+import { Form, Input, Button, Spin } from 'antd';
 import Password from 'antd/es/input/Password';
+import { useState } from 'react';
 import useFormActions from 'src/app/Hooks/useFormActions';
 import useFormLoad from 'src/app/Hooks/useFormLoad';
 import useFormhelper from 'src/app/Hooks/useFormhelper';
@@ -7,8 +8,16 @@ const APIURL = 'User';
 
 const UserPage = () => {
   const { readOnly, id, action } = useFormhelper();
-  const { formRef } = useFormLoad(id, action, APIURL);
+  const { formRef, loading } = useFormLoad(id, action, APIURL);
   const { onFinish } = useFormActions(id, action, APIURL);
+
+  const Wait = () => {
+    if (loading) {
+      return <Spin></Spin>;
+    } else {
+      return <div></div>;
+    }
+  };
 
   return (
     <Form
@@ -19,6 +28,7 @@ const UserPage = () => {
       //initialValues={{ remember: true }}
       onFinish={onFinish}
     >
+      <Wait></Wait>
       <Form.Item
         label="Name"
         name="name"
