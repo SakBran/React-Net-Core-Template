@@ -139,7 +139,7 @@ export const BasicTable: React.FC<PropsType> = ({
         </button>
       </div> */}
 
-      <Space.Compact block className="antdFormContainer">
+      <Space.Compact block size="small" className="antdFormContainer">
         <Input
           addonBefore={selectBefore}
           onChange={(e) => setSearchValue(e.target.value)}
@@ -202,8 +202,10 @@ export const BasicTable: React.FC<PropsType> = ({
           </tbody>
         </table>
       </div>
+
       <div className="pagination">
         <Pagination
+          size="small"
           showSizeChanger
           onShowSizeChange={(current) => setPageSize(current)}
           defaultCurrent={+pageIndex}

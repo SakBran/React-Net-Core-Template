@@ -34,11 +34,17 @@ const LayoutComponent: React.FC = () => {
         style={collapsed ? { marginLeft: 25 } : { marginLeft: 200 }}
       >
         <Header className="topNav">
-          <Button size="small" onClick={handleCollapsed}>
+          <Space
+            size="small"
+            onClick={handleCollapsed}
+            style={{ cursor: 'pointer', padding: 16 }}
+          >
             {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-          </Button>
+          </Space>
         </Header>
-        <Space style={{ paddingTop: 16 }}>
+        <Space
+          style={{ paddingTop: 10, paddingBottom: 10, background: 'white' }}
+        >
           <BreadcrumbLink />
         </Space>
 
