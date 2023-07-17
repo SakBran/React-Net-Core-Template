@@ -61,6 +61,7 @@ export const SideNav = ({ collapsed, setCollapse }: Props) => {
         top: 0,
         bottom: 0,
         backgroundColor: 'white',
+        zIndex: 100000,
       }}
     >
       <Menu
