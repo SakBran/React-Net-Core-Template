@@ -4,6 +4,7 @@ import Password from 'antd/es/input/Password';
 import useFormActions from 'src/app/Hooks/useFormActions';
 import useFormLoad from 'src/app/Hooks/useFormLoad';
 import useFormhelper from 'src/app/Hooks/useFormhelper';
+import { AjaxButton } from 'src/app/components/AjaxButton/AjaxButton';
 const APIURL = 'User';
 
 const UserPage = () => {
@@ -46,17 +47,7 @@ const UserPage = () => {
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 10, span: 20 }}>
-          <Button type="primary" htmlType="submit">
-            {writeLoading ? (
-              <Spin
-                tip="Loading..."
-                spinning={writeLoading}
-                indicator={<LoadingOutlined style={{ color: 'white' }} spin />}
-              ></Spin>
-            ) : (
-              action
-            )}
-          </Button>
+          <AjaxButton writeLoading={writeLoading} action={action} />
         </Form.Item>
       </Form>
     </Spin>
