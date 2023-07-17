@@ -92,21 +92,6 @@ export const BasicTable: React.FC<PropsType> = ({
   }, [url, filterColumn, filterQuery]);
 
   const { Option } = Select;
-  const selectBefore = (
-    <Select
-      defaultValue={displayData[0]}
-      style={{ minWidth: '150px' }}
-      onChange={(e) => setSearchColumn(e)}
-    >
-      {displayData.map((display: string) => {
-        return (
-          <Option key={display} value={display}>
-            {NameConvert(display)}
-          </Option>
-        );
-      })}
-    </Select>
-  );
 
   return (
     <Spin tip="Loading..." spinning={loading}>
@@ -140,8 +125,21 @@ export const BasicTable: React.FC<PropsType> = ({
       </div> */}
 
       <Space.Compact block size="small" className="antdFormContainer">
+        <Select
+          defaultValue={displayData[0]}
+          style={{ minWidth: '150px' }}
+          onChange={(e) => setSearchColumn(e)}
+        >
+          {displayData.map((display: string) => {
+            return (
+              <Option key={display} value={display}>
+                {NameConvert(display)}
+              </Option>
+            );
+          })}
+        </Select>
         <Input
-          addonBefore={selectBefore}
+          // addonBefore={selectBefore}
           onChange={(e) => setSearchValue(e.target.value)}
         />
         <Button

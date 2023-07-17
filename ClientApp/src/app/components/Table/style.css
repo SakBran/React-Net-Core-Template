@@ -71,9 +71,5 @@ th {
 }
 
 .antdFormContainer{
-    display: flex;
-    justify-content: right;
-    align-items: right;
-    width: 100%;
     margin-bottom: 16px;
 }
