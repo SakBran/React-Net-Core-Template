@@ -43,7 +43,6 @@ export const BasicTable: React.FC<PropsType> = ({
   const [filterColumn, setFilterColumn] = useState(displayData[0]);
   const [filterQuery, setFilterQuery] = useState('');
 
-  const [searchColumn, setSearchColumn] = useState('');
   const [searchValue, setSearchValue] = useState('');
 
   const [pageIndex, setPageIndex] = useState(0);
@@ -127,7 +126,7 @@ export const BasicTable: React.FC<PropsType> = ({
       <Space.Compact block size="small" className="antdFormContainer">
         <Select
           style={{ minWidth: '150px' }}
-          onChange={(e) => setSearchColumn(e)}
+          onChange={(e) => setFilterColumn(e)}
         >
           {displayData.map((display: string) => {
             return (
@@ -146,7 +145,6 @@ export const BasicTable: React.FC<PropsType> = ({
         <Button
           onClick={() => {
             setFilterQuery(searchValue);
-            setFilterColumn(searchColumn);
           }}
         >
           Search

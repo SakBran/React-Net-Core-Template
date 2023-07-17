@@ -14,7 +14,8 @@ export const AjaxButton = ({ writeLoading, action }: Props) => {
         <Button type="primary" htmlType="submit">
           {writeLoading ? (
             <Spin
-              tip="Loading..."
+              tip="Loading"
+              size="large"
               spinning={writeLoading}
               indicator={<LoadingOutlined style={{ color: 'white' }} spin />}
             ></Spin>
