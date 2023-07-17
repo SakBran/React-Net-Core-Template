@@ -87,42 +87,12 @@ export const BasicTable: React.FC<PropsType> = ({
     call()
       .then(() => setloading(false))
       .catch(() => setloading(false));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [url, filterColumn, filterQuery]);
+  }, [fetch, url]);
 
   const { Option } = Select;
 
   return (
     <Spin tip="Loading..." spinning={loading}>
-      {/* <div className="form-container">
-        <select onChange={(e) => setSearchColumn(e.target.value)}>
-          <option key="searchKey" value="">
-            Select One
-          </option>
-          {displayData.map((display: string) => {
-            return (
-              <option key={display} value={display}>
-                {NameConvert(display)}
-              </option>
-            );
-          })}
-        </select>
-        <input
-          type="text"
-          placeholder="......"
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
-        />
-        <button
-          onClick={() => {
-            setFilterQuery(searchValue);
-            setFilterColumn(searchColumn);
-          }}
-        >
-          Search
-        </button>
-      </div> */}
-
       <Space.Compact block size="small" className="antdFormContainer">
         <Select
           style={{ minWidth: '150px' }}
