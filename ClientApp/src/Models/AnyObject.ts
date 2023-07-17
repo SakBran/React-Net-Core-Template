@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type AnyObject = {
-  [x: string]: unknown;
-  [x: number]: unknown;
-  [x: symbol]: unknown;
+  [x: string]: any;
+  [x: number]: any;
+  [x: symbol]: any;
 };
