@@ -24,5 +24,5 @@ export const BreadcrumbLink = () => {
     }
   });
 
-  return <Breadcrumb style={{ margin: '16px 0' }} items={item}></Breadcrumb>;
+  return <Breadcrumb style={{ marginLeft: '16px' }} items={item}></Breadcrumb>;
 };

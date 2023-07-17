@@ -19,11 +19,6 @@ th {
     margin-top: 16px;
 }
 
-.loading{
-    position: absolute;
-}
-
-
 .form-container {
     display: flex;
     justify-content: right;
@@ -73,4 +68,12 @@ th {
 
 .table-container span {
     color: #3F90FF;
+}
+
+.antdFormContainer{
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    width: 100%;
+    margin-bottom: 16px;
 }

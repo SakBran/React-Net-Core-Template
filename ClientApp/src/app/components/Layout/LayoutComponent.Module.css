@@ -7,7 +7,7 @@
     position: fixed;
     top: 1px;
     right: 16px;
-    z-Index: 1;
+    z-Index: 10000;
 }
 
 .loginContainer button {
@@ -29,7 +29,7 @@
 
 @media screen {
     .loginContainer {
-        position: absolute;
+        position: fixed;
         top: 1px;
         right: 0px;
         z-Index: 1;

@@ -37,10 +37,10 @@ const LayoutComponent: React.FC = () => {
           <Button size="small" onClick={handleCollapsed}>
             {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
           </Button>
+          <BreadcrumbLink />
         </Header>
 
-        <Content style={{ margin: '0px 16px 16px 16px', overflow: 'initial' }}>
-          <BreadcrumbLink />
+        <Content style={{ margin: '16px 16px 16px 16px', overflow: 'initial' }}>
           <div
             style={{
               padding: 24,

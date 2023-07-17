@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import './style.css';
 import NameConvert from 'src/app/services/NameConvert';
 import TableAction from '../TableAction/TableAction';
-import { Pagination, Spin } from 'antd';
+import { Button, Input, Pagination, Select, Space, Spin } from 'antd';
 import { PaginationType } from 'src/Models/PaginationType';
 //ဒီနေရမှာ Ant Designက Table သုံးလဲရတယ် Depedencyနဲနိုင်သမျှနဲအောင် လုပ်သာအကောင်းဆုံးပဲ
 //Fetch လုပ်တာလဲ ပြချင်တဲ့ Column ကို Display Dataထဲထည့်ပေးရုံပဲ
@@ -22,6 +22,7 @@ export const BasicTable: React.FC<PropsType> = ({
   fetch,
 }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
   const intialValue: PaginationType = {
     data: [],
     pageIndex: 0,
@@ -89,9 +90,27 @@ export const BasicTable: React.FC<PropsType> = ({
       .catch(() => setloading(false));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url, filterColumn, filterQuery]);
+
+  const { Option } = Select;
+  const selectBefore = (
+    <Select
+      defaultValue={displayData[0]}
+      style={{ minWidth: '150px' }}
+      onChange={(e) => setSearchColumn(e)}
+    >
+      {displayData.map((display: string) => {
+        return (
+          <Option key={display} value={display}>
+            {NameConvert(display)}
+          </Option>
+        );
+      })}
+    </Select>
+  );
+
   return (
     <Spin tip="Loading..." spinning={loading}>
-      <div className="form-container">
+      {/* <div className="form-container">
         <select onChange={(e) => setSearchColumn(e.target.value)}>
           <option key="searchKey" value="">
             Select One
@@ -118,7 +137,23 @@ export const BasicTable: React.FC<PropsType> = ({
         >
           Search
         </button>
-      </div>
+      </div> */}
+
+      <Space className="antdFormContainer">
+        <Input
+          addonBefore={selectBefore}
+          onChange={(e) => setSearchValue(e.target.value)}
+        />
+        <Button
+          onClick={() => {
+            setFilterQuery(searchValue);
+            setFilterColumn(searchColumn);
+          }}
+        >
+          Search
+        </Button>
+      </Space>
+
       <div className="table-container">
         <table>
           <thead>
