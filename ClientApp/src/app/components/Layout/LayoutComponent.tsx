@@ -52,7 +52,7 @@ const LayoutComponent: React.FC = () => {
           <div
             style={{
               padding: 24,
-              minHeight: 360,
+              minHeight: 'auto',
               background: colorBgContainer,
               borderRadius: '2px',
               boxShadow: '0 2px 6px rgba(0, 0, 0, 0.5)',
