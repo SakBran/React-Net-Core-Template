@@ -1,4 +1,4 @@
-import { Button, Layout, theme } from 'antd';
+import { Button, Layout, Space, theme } from 'antd';
 import React, { useState } from 'react';
 import { BreadcrumbLink } from '../Breadcrump/BreadcrumbLink';
 import { SideNav } from '../SideNav/SideNav';
@@ -37,8 +37,10 @@ const LayoutComponent: React.FC = () => {
           <Button size="small" onClick={handleCollapsed}>
             {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
           </Button>
-          <BreadcrumbLink />
         </Header>
+        <Space>
+          <BreadcrumbLink />
+        </Space>
 
         <Content style={{ margin: '16px 16px 16px 16px', overflow: 'initial' }}>
           <div

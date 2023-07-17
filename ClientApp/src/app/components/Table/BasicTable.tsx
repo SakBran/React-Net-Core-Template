@@ -139,7 +139,7 @@ export const BasicTable: React.FC<PropsType> = ({
         </button>
       </div> */}
 
-      <Space className="antdFormContainer">
+      <Space.Compact block className="antdFormContainer">
         <Input
           addonBefore={selectBefore}
           onChange={(e) => setSearchValue(e.target.value)}
@@ -152,7 +152,7 @@ export const BasicTable: React.FC<PropsType> = ({
         >
           Search
         </Button>
-      </Space>
+      </Space.Compact>
 
       <div className="table-container">
         <table>
