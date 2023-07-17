@@ -126,7 +126,6 @@ export const BasicTable: React.FC<PropsType> = ({
 
       <Space.Compact block size="small" className="antdFormContainer">
         <Select
-          defaultValue={displayData[0]}
           style={{ minWidth: '150px' }}
           onChange={(e) => setSearchColumn(e)}
         >
@@ -140,7 +139,9 @@ export const BasicTable: React.FC<PropsType> = ({
         </Select>
         <Input
           // addonBefore={selectBefore}
-          onChange={(e) => setSearchValue(e.target.value)}
+          onChange={(e) => {
+            setSearchValue(e.target.value);
+          }}
         />
         <Button
           onClick={() => {
