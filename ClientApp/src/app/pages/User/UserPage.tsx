@@ -9,7 +9,7 @@ const APIURL = 'User';
 const UserPage = () => {
   const { readOnly, id, action } = useFormhelper();
   const { formRef, loading } = useFormLoad(id, action, APIURL);
-  const { onFinish } = useFormActions(id, action, APIURL);
+  const { onFinish, writeLoading } = useFormActions(id, action, APIURL);
 
   return (
     <Spin tip="Loading..." spinning={loading}>
@@ -47,7 +47,15 @@ const UserPage = () => {
 
         <Form.Item wrapperCol={{ offset: 10, span: 20 }}>
           <Button type="primary" htmlType="submit">
-            {action}
+            {writeLoading ? (
+              <Spin
+                tip="Loading..."
+                spinning={writeLoading}
+                indicator={<LoadingOutlined style={{ color: 'white' }} spin />}
+              ></Spin>
+            ) : (
+              action
+            )}
           </Button>
         </Form.Item>
       </Form>
