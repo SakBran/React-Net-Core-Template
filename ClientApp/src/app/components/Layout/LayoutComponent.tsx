@@ -37,7 +37,7 @@ const LayoutComponent: React.FC = () => {
           <Space
             size="small"
             onClick={handleCollapsed}
-            style={{ cursor: 'pointer', padding: 16 }}
+            style={{ cursor: 'pointer', paddingLeft: 16 }}
           >
             {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
           </Space>
