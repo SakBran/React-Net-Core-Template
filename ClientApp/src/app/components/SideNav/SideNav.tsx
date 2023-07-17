@@ -43,13 +43,13 @@ export const SideNav = ({ collapsed, setCollapse }: Props) => {
         left: 0,
         top: 0,
         bottom: 0,
-        backgroundColor: 'white',
+        //backgroundColor: 'white',
         zIndex: 100000,
       }}
     >
       <Menu
         mode="inline"
-        theme="light"
+        theme="dark"
         defaultSelectedKeys={['1']}
         defaultOpenKeys={['sub1']}
         items={items}
