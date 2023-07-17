@@ -46,6 +46,7 @@ const useFormActions = (id: string, action: string, APIURL: string) => {
           .then((x) => {
             setWriteLoading(false);
             success();
+            window.history.back();
           })
           .catch((err) => {
             setWriteLoading(false);
