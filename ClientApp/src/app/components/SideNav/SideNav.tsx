@@ -13,23 +13,6 @@ type Props = {
 export const SideNav = ({ collapsed, setCollapse }: Props) => {
   const items: MenuProps['items'] = [
     {
-      label: 'Company',
-      key: 'SubMenu-Company',
-      icon: <TeamOutlined />,
-      children: [
-        {
-          label: <Link to="/Company/List">List</Link>,
-          key: 'SubMenu-Company-List',
-          icon: <UnorderedListOutlined />,
-        },
-        {
-          label: <Link to="/Company/New">New</Link>,
-          key: 'SubMenu-Company-New',
-          icon: <PlusCircleOutlined />,
-        },
-      ],
-    },
-    {
       label: 'User',
       key: 'SubMenu-User',
       icon: <TeamOutlined />,

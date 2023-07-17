@@ -38,7 +38,7 @@ const LayoutComponent: React.FC = () => {
             {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
           </Button>
         </Header>
-        <Space>
+        <Space style={{ paddingTop: 16 }}>
           <BreadcrumbLink />
         </Space>
 
@@ -48,7 +48,7 @@ const LayoutComponent: React.FC = () => {
               padding: 24,
               minHeight: 360,
               background: colorBgContainer,
-              borderRadius: '4px',
+              borderRadius: '2px',
               boxShadow: '0 2px 6px rgba(0, 0, 0, 0.5)',
             }}
           >
