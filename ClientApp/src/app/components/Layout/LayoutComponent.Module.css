@@ -23,7 +23,7 @@
     height: 25px;
     display: flex;
     align-items: center;
-    background-color: transparent;
+    background-color: #F5F5F5;
     padding: 0px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5),
 }
