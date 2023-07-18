@@ -30,7 +30,7 @@ namespace API.Service
         public async Task<TokenModel?> Authenticate(User users)
         {
             IQueryable<User> UsersRecords = _userService.Retrieve.Where(x => x.Name == users.Name && x.Password == users.Password);
-            if (!UsersRecords.Any())
+            if (!UsersRecords.AsParallel().Any())
             {
                 return null;
             }

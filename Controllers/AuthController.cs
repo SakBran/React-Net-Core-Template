@@ -16,14 +16,16 @@ namespace API.Controllers
     {
 
         private readonly IJWTManagerService _jWTManager;
-        public AuthController(IJWTManagerService jWTManager)
+        private readonly ICommonService<TokenModel> _tokenService;
+        public AuthController(IJWTManagerService jWTManager, ICommonService<TokenModel> tokenService)
         {
             this._jWTManager = jWTManager;
+            _tokenService = tokenService;
         }
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<ActionResult> Login(User data)
+        public async Task<IActionResult> Login(User data)
         {
             try
             {
