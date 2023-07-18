@@ -7,8 +7,8 @@ axiosInstance.interceptors.request.use(
   (config) => {
     // Modify the request config
     if (config.url) {
-      config.headers.Authorization =
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiMSIsInJvbGUiOiJTdXBlciBBZG1pbiIsIm5iZiI6MTY4ODY0Mjg1MywiZXhwIjoxNjg4NzI5MjUzLCJpYXQiOjE2ODg2NDI4NTN9.GI4pXZIFOHIYss3MKlOOv-aydCylB6u62iGN1dMvhlU';
+      const token = localStorage.getItem('token');
+      config.headers.Authorization = `Bearer ${token}`;
       if (config.url && envConfig.baseUrl) {
         config.url = envConfig.baseUrl + config.url;
       }
