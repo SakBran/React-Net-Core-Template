@@ -14,6 +14,7 @@ namespace API.DBContext
 
         //public DbSet<LogModel> LogModels { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<TokenModel> TokenModels { get; set; }
 
 
 

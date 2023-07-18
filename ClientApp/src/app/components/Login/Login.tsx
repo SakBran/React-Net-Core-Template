@@ -1,13 +1,15 @@
-import React from 'react';
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './Style.css';
+import { AnyObject } from 'antd/es/table/Table';
 
-const LoginPage: React.FC = () => {
-  const onFinish = (values: any) => {
-    console.log('Received values:', values);
+type Props = {
+  Auth: (value: AnyObject) => void;
+};
+const LoginPage = ({ Auth }: Props) => {
+  const onFinish = (values: AnyObject) => {
+    Auth(values);
   };
-
   return (
     <div className="container">
       <div className="form-container">
@@ -15,7 +17,7 @@ const LoginPage: React.FC = () => {
 
         <Form name="loginForm" onFinish={onFinish}>
           <Form.Item
-            name="username"
+            name="Name"
             rules={[{ required: true, message: 'Please enter your username!' }]}
           >
             <Input
@@ -25,7 +27,7 @@ const LoginPage: React.FC = () => {
             />
           </Form.Item>
           <Form.Item
-            name="password"
+            name="Password"
             rules={[{ required: true, message: 'Please enter your password!' }]}
           >
             <Input.Password
@@ -34,6 +36,7 @@ const LoginPage: React.FC = () => {
               size="large"
             />
           </Form.Item>
+
           <Form.Item>
             <Button
               type="primary"

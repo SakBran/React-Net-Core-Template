@@ -5,13 +5,14 @@ export type Payload = {
 };
 export type UserPayload = {
   role?: string;
+  userId?: string;
   isSignedIn?: boolean;
 };
 // Create a new context
-const Context = createContext<Payload>({
+export const Context = createContext<Payload>({
   data: {
     role: 'admin',
-    isSignedIn: true,
+    isSignedIn: false,
   },
 });
 
@@ -25,7 +26,7 @@ type Props = {
 export const ContextProvider: React.FC<Props> = ({ children }) => {
   const [data, setData] = useState<UserPayload>({
     role: 'admin',
-    isSignedIn: true,
+    isSignedIn: false,
   });
 
   const updateData = (newData: UserPayload) => {

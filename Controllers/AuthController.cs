@@ -1,4 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Threading.Tasks;
+using API.DBContext;
+using API.Interface;
+using API.Model;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace API.Controllers
 {
@@ -6,38 +14,35 @@ namespace API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        // private readonly ApplicationDbContext _context;
-        // private readonly IConfiguration _iconfiguration;
-        // private readonly IJWTManagerService _jWTManager;
-        // private readonly IMapper _mapper;
-        // public AuthController(ApplicationDbContext context, IConfiguration iconfiguration, IJWTManagerService jWTManager, IMapper mapper)
-        // {
-        //     _context = context;
-        //     _iconfiguration = iconfiguration;
-        //     _mapper = mapper;
-        //     this._jWTManager = jWTManager;
-        // }
 
-        //     [AllowAnonymous]
-        //     [HttpPost]
-        //     [Route("Login")]
-        //     public async Task<User> Login(User data)
-        //     {
-        //         var response = new User();
+        private readonly IJWTManagerService _jWTManager;
+        public AuthController(IJWTManagerService jWTManager)
+        {
+            this._jWTManager = jWTManager;
+        }
 
-        //         try
-        //         {
-        //             var token = _jWTManager.AuthenticateTradenet2(response.data.htathaka_no);
-        //             response.Token = token.Token;
-        //             response.Permission = token.Permission;
-        //             return response;
-        //         }
-        //         catch (Exception ex)
-        //         {
-        //             var error = ex;
-        //             return response;
-        //         }
-        //     }
-        // 
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<ActionResult> Login(User data)
+        {
+            try
+            {
+                var result = await _jWTManager.Authenticate(data);
+                if (result != null)
+                {
+                    return Ok(result);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                var error = ex;
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
     }
 }

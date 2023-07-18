@@ -1,4 +1,4 @@
-/* .container {
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,4 +34,4 @@
     border: 0px solid transparent !important;
     border-radius: 0px !important;
     box-sizing: border-box;
-  } */
+  } 

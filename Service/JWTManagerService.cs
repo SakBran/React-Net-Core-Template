@@ -1,5 +1,6 @@
 ﻿using API.Interface;
 using API.Model;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -7,6 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace API.Service
 {
@@ -25,7 +27,7 @@ namespace API.Service
             _tokenService = tokenService;
             _userService = userService;
         }
-        public TokenModel? Authenticate(User users)
+        public async Task<TokenModel?> Authenticate(User users)
         {
             IQueryable<User> UsersRecords = _userService.Retrieve.Where(x => x.Name == users.Name && x.Password == users.Password);
             if (!UsersRecords.Any())
@@ -34,7 +36,7 @@ namespace API.Service
             }
 
             // Else we generate JSON Web Token
-            var tempUser = UsersRecords.FirstOrDefault();
+            var tempUser = await UsersRecords.FirstOrDefaultAsync();
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenKey = Encoding.UTF8.GetBytes(iconfiguration["JWT:Key"] ?? "");
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -87,7 +89,6 @@ namespace API.Service
                 RefreshToken = encryptedRefreshToken,
                 UserId = userId,
                 Permission = "User",
-                Sakhan = "-"
             };
             _tokenService.Create(tokenObj);
             return tokenObj;
