@@ -4,6 +4,7 @@ import { UserPayload } from '../components/Context/Context';
 import LayoutComponent from '../components/Layout/LayoutComponent';
 import Login from '../components/Login/Login';
 import axiosInstance from '../services/AxiosInstance';
+import { Spin } from 'antd';
 type User = {
   Name: string;
   Password: string;
@@ -74,7 +75,7 @@ const useAuthCheck = () => {
       .catch((err) => console.log(err));
   };
 
-  const [template, setTemplate] = useState(<Login Auth={Auth}></Login>);
+  const [template, setTemplate] = useState(<>Loading...</>);
   useEffect(() => {
     if (data.isSignedIn === true) {
       setTemplate(<LayoutComponent></LayoutComponent>);
