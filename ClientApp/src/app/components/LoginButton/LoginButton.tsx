@@ -11,9 +11,11 @@ export const LoginButton = ({ collapsed }: Pros) => {
     if (data?.isSignedIn) {
       localStorage.clear();
       const temp = { ...data };
+      temp.userId = '';
+      temp.role = '';
       temp.isSignedIn = false;
       if (updateData) updateData(temp);
-      window.location.reload();
+      //window.location.reload();
     } else {
       const temp = { ...data };
       temp.isSignedIn = true;

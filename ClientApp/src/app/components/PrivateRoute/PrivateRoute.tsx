@@ -8,7 +8,7 @@ type props = {
 const Protected: React.FC<props> = ({ children }) => {
   const { data } = React.useContext(AppContext);
   if (!data?.isSignedIn) {
-    window.location.reload();
+    //window.location.reload();
     return <Navigate to="/" replace />;
   }
   //else if(Roles)

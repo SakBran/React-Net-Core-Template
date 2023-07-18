@@ -84,7 +84,13 @@ const useAuthCheck = () => {
   const updateData = (newData: UserPayload) => {
     setData(newData);
   };
-  useEffect(() => console.log(data), [data]);
+  useEffect(() => {
+    console.log(data);
+    if (data.isSignedIn === false) {
+      setTemplate(<Login Auth={Auth}></Login>);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
   return { template, data, updateData };
 };
 
