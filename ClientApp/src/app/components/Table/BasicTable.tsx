@@ -46,7 +46,7 @@ export const BasicTable: React.FC<PropsType> = ({
   const [searchValue, setSearchValue] = useState('');
 
   const [pageIndex, setPageIndex] = useState(0);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(5);
   const [data, setData] = useState<PaginationType>(intialValue);
 
   const [url, setUrl] = useState('');
@@ -172,8 +172,10 @@ export const BasicTable: React.FC<PropsType> = ({
 
       <div className="pagination">
         <Pagination
-          size="small"
+          //size="small"
           showSizeChanger
+          pageSizeOptions={[5, 10, 20, 50, 100]}
+          defaultPageSize={5}
           onShowSizeChange={(current) => setPageSize(current)}
           defaultCurrent={+pageIndex}
           total={data.totalCount}
