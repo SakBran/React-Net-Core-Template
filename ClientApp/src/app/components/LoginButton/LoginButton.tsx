@@ -1,19 +1,20 @@
 import { LoginOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
-import { useCustomContext } from '../Context/Context';
+import AppContext from '../Context/Context';
+import React from 'react';
 type Pros = {
   collapsed: boolean;
 };
 export const LoginButton = ({ collapsed }: Pros) => {
-  const { data, updateData } = useCustomContext();
+  const { data, updateData } = React.useContext(AppContext);
   const handleLogin = () => {
     if (data?.isSignedIn) {
-      console.log(data);
+      localStorage.clear();
       const temp = { ...data };
       temp.isSignedIn = false;
       if (updateData) updateData(temp);
+      window.location.reload();
     } else {
-      console.log(data);
       const temp = { ...data };
       temp.isSignedIn = true;
       if (updateData) updateData(temp);
@@ -21,7 +22,7 @@ export const LoginButton = ({ collapsed }: Pros) => {
   };
   return (
     <>
-      {data?.isSignedIn ? (
+      {data?.isSignedIn === true ? (
         <Button size="small" onClick={handleLogin}>
           <UserOutlined />
         </Button>
