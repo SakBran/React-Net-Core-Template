@@ -85,7 +85,6 @@ const useAuthCheck = () => {
     setData(newData);
   };
   useEffect(() => {
-    console.log(data);
     if (data.isSignedIn === false) {
       setTemplate(<Login Auth={Auth}></Login>);
     }
