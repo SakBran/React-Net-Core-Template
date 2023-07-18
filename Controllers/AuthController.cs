@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using API.DBContext;
 using API.Interface;
 using API.Model;
 using Microsoft.AspNetCore.Authorization;
@@ -16,11 +15,9 @@ namespace API.Controllers
     {
 
         private readonly IJWTManagerService _jWTManager;
-        private readonly ICommonService<TokenModel> _tokenService;
-        public AuthController(IJWTManagerService jWTManager, ICommonService<TokenModel> tokenService)
+        public AuthController(IJWTManagerService jWTManager)
         {
             this._jWTManager = jWTManager;
-            _tokenService = tokenService;
         }
 
         [AllowAnonymous]
@@ -41,8 +38,7 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                var error = ex;
-                return StatusCode(StatusCodes.Status500InternalServerError);
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
             }
         }
 
