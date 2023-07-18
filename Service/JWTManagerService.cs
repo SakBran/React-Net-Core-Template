@@ -60,7 +60,7 @@ namespace API.Service
                 UserId = userId,
                 Permission = tempUser?.Permission ?? "",
             };
-            _tokenService.Create(tokenObj);
+            await _tokenService.Create(tokenObj);
             return tokenObj;
 
         }

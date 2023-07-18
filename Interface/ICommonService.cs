@@ -1,13 +1,14 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 
 namespace API.Interface
 {
     public interface ICommonService<T>
     {
-        int Create(T entity);
+        Task<int> Create(T entity);
         IQueryable<T> Retrieve { get; }
-        int Update(string id, T entity);
-        int Delete(string id);
+        Task<int> Update(string id, T entity);
+        Task<int> Delete(string id);
 
     }
 }

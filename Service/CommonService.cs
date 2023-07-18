@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using API.DBContext;
 using API.Interface;
 using Microsoft.EntityFrameworkCore;
@@ -13,35 +14,35 @@ namespace API.Service
             _context = context;
         }
 
-        public int Create(T entity)
+        public async Task<int> Create(T entity)
         {
-            _context.Set<T>().Add(entity);
-            return _context.SaveChanges();
+            await _context.Set<T>().AddAsync(entity);
+            return await _context.SaveChangesAsync();
         }
 
         public IQueryable<T> Retrieve => this._context.Set<T>();
 
 
-        public int Update(string id, T obj)
+        public async Task<int> Update(string id, T obj)
         {
-            var oldData = _context.Find<T>(id);
+            var oldData = await _context.FindAsync<T>(id);
             if (oldData != null)
             {
                 _context.Entry(oldData).State = EntityState.Detached;
             }
             _context.Entry(obj).State = EntityState.Modified;
-            return _context.SaveChanges();
+            return await _context.SaveChangesAsync();
         }
 
-        public int Delete(string id)
+        public async Task<int> Delete(string id)
         {
-            var temp = _context.Set<T>().Find(id);
+            var temp = await _context.Set<T>().FindAsync(id);
             if (temp != null)
             {
                 _context.Set<T>().Remove(temp);
             }
 
-            return _context.SaveChanges();
+            return await _context.SaveChangesAsync();
         }
     }
 }
