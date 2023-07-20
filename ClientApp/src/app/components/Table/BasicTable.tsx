@@ -83,10 +83,9 @@ export const BasicTable: React.FC<PropsType> = ({
     setloading(true);
     const call = async () => {
       setData(await fetch(url));
+      setloading(false);
     };
-    call()
-      .then(() => setloading(false))
-      .catch(() => setloading(false));
+    call();
   }, [fetch, url]);
 
   const { Option } = Select;

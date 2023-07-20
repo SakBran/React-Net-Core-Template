@@ -22,36 +22,42 @@ const useFormActions = (id: string, action: string, APIURL: string) => {
     (values: unknown) => {
       setWriteLoading(true);
       if (action === 'New') {
-        Post(APIURL, values)
-          .then((x) => {
+        const action = async () => {
+          try {
+            await Post(APIURL, values);
             setWriteLoading(false);
             success();
-          })
-          .catch((err) => {
+          } catch (ex) {
             setWriteLoading(false);
             error();
-          });
+          }
+        };
+        action();
       } else if (action === 'Edit') {
-        Put(APIURL, id, values)
-          .then((x) => {
+        const action = async () => {
+          try {
+            await Put(APIURL, id, values);
             setWriteLoading(false);
             success();
-          })
-          .catch((err) => {
+          } catch (ex) {
             setWriteLoading(false);
             error();
-          });
+          }
+        };
+        action();
       } else if (action === 'Delete') {
-        Delete(APIURL, id)
-          .then((x) => {
+        const action = async () => {
+          try {
+            await Delete(APIURL, id);
             setWriteLoading(false);
             success();
             window.history.back();
-          })
-          .catch((err) => {
+          } catch (ex) {
             setWriteLoading(false);
             error();
-          });
+          }
+        };
+        action();
       } else if (action === 'Detail') {
         setWriteLoading(false);
       }
