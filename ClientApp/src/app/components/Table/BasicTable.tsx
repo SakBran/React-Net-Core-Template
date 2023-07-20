@@ -82,8 +82,12 @@ export const BasicTable: React.FC<PropsType> = ({
   useEffect(() => {
     setloading(true);
     const call = async () => {
-      setData(await fetch(url));
-      setloading(false);
+      try {
+        setData(await fetch(url));
+        setloading(false);
+      } catch (ex) {
+        setloading(false);
+      }
     };
     call();
   }, [fetch, url]);
