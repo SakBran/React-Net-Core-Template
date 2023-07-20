@@ -58,21 +58,19 @@ const dataBind = (data: unknown): UserPayload => {
 
 const useAuthCheck = () => {
   const [data, setData] = useState<UserPayload>(getIntial());
-  const Auth = (values: AnyObject) => {
+  const Auth = async (values: AnyObject) => {
     const PostBody: User = {
       Name: values['Name'],
       Password: values['Password'],
       Permission: 'User',
     };
-    axiosInstance
-      .post('Auth', PostBody)
-      .then((x) => {
-        if (updateData) {
-          const temp = dataBind(x.data);
-          updateData(temp);
-        }
-      })
-      .catch((err) => console.log(err));
+    try {
+      const resp = await axiosInstance.post('Auth', PostBody);
+      const temp = dataBind(await resp.data);
+      updateData(temp);
+    } catch (ex) {
+      console.log(ex);
+    }
   };
 
   const [template, setTemplate] = useState(<>Loading...</>);
