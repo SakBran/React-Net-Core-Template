@@ -24,8 +24,8 @@ const getIntial = (): UserPayload => {
     userId: '',
     isSignedIn: false,
   };
-  const useId = localStorage.getItem('userId');
-  const permission = localStorage.getItem('permission');
+  const useId = sessionStorage.getItem('userId');
+  const permission = sessionStorage.getItem('permission');
   if (useId && permission) {
     try {
       const response: UserPayload = {
@@ -44,10 +44,10 @@ const getIntial = (): UserPayload => {
 
 const dataBind = (data: unknown): UserPayload => {
   const token: Token = JSON.parse(JSON.stringify(data));
-  localStorage.setItem('token', token.token);
-  localStorage.setItem('refreshToken', token.refreshToken);
-  localStorage.setItem('userId', token.userId);
-  localStorage.setItem('permission', token.permission);
+  sessionStorage.setItem('token', token.token);
+  sessionStorage.setItem('refreshToken', token.refreshToken);
+  sessionStorage.setItem('userId', token.userId);
+  sessionStorage.setItem('permission', token.permission);
   const payload: UserPayload = {
     role: token.permission,
     userId: token.userId,

@@ -9,7 +9,7 @@ export const LoginButton = ({ collapsed }: Pros) => {
   const { data, updateData } = React.useContext(AppContext);
   const handleLogin = () => {
     if (data?.isSignedIn) {
-      localStorage.clear();
+      sessionStorage.clear();
       const temp = { ...data };
       temp.userId = '';
       temp.role = '';

@@ -8,10 +8,12 @@ const useFormLoad = (id: string, action: string, url: string) => {
   const onLoad = useCallback(() => {
     if (action !== 'New') {
       if (id) {
-        GetSingle(url + '/' + id).then((x) => {
-          formRef.current?.setFieldsValue(x);
+        const asycMethod = async () => {
+          const resp = await GetSingle(url + '/' + id);
+          formRef.current?.setFieldsValue(resp);
           setLoading(false);
-        });
+        };
+        asycMethod();
       }
     } else {
       setLoading(false);
