@@ -4,7 +4,6 @@ import { UserPayload } from '../components/Context/Context';
 import LayoutComponent from '../components/Layout/LayoutComponent';
 import Login from '../components/Login/Login';
 import axiosInstance from '../services/AxiosInstance';
-import { Spin } from 'antd';
 type User = {
   Name: string;
   Password: string;
